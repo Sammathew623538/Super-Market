@@ -26,6 +26,12 @@ A simple yet functional **Django-based Super Market web application** with produ
 
 ---
 
+✨ Future Improvements
+
+💳 Online payment integration for services 💬 Live chat with doctor 📜 Pet health records management 📱 Notifications via SMS/WhatsApp
+
+
+
 ## 🧠 Tech Stack
 
 | Component | Technology Used |
