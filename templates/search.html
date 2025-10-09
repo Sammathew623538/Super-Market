@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contents %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+
+<div class="search-results-page">
+  <h2 class="search-title">Search Results for "{{ query }}"</h2>
+
+  {% if results %}
+    <div class="search-product-list">
+      {% for product in results %}
+        <div class="search-product-card">
+          
+          <!-- Left: Image -->
+          <div class="search-img-box">
+            <a href="{% url 'product_detail' product.slug %}" style="text-decoration: none; color: black;">
+              <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            </a>
+          </div>
+
+          <!-- Right: Info -->
+          <div class="search-info">
+            <a href="{% url 'product_detail' product.slug %}" style="text-decoration: none; color: black;">
+              <h3>{{ product.name }}</h3>
+            </a>
+            <p class="price">₹{{ product.price }}</p>
+               <a href="{% url 'add_to_cart' product.id %}"><button class="btn">Add to Cart</button></a>
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="no-results">No products found.</p>
+  {% endif %}
+</div>
+{% endblock %}

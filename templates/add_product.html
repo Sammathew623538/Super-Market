@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block contents %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/addproduct.css' %}">
+<div class="fullscreen-container">
+  <div class="card shadow-lg border-0 rounded-3 product-card">
+    <div class="card-header text-white text-center">
+      <h3>➕ Add New Product</h3>
+    </div>
+    <div class="card-body p-4">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="mb-3">
+            <label class="form-label fw-bold">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+              <div class="text-danger small">
+                {{ field.errors }}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-success btn-lg">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contents %}
+<link rel="stylesheet" href="{% static 'css/buy_success.css' %}">
+<div class="container" style="max-width:600px; margin:40px auto; text-align:center;">
+  <h2>✅ Order Placed Successfully!</h2>
+  <p>Product: {{ order.product.name }}</p>
+  <p>Quantity: {{ order.quantity }}</p>
+  <p>Total Price: ₹{{ order.total_price }}</p>
+  <p>Delivery Address: {{ order.address }}</p>
+  <p>Phone: {{ order.phone_number }}</p>
+  <p><b>Estimated Delivery:</b> {{ order.delivery_date|date:"d M Y, h:i A" }}</p>
+
+  <a href="{% url 'home' %}" class="btn btn-success">Continue Shopping</a>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+
+    /* buy_success.css */
+.container {
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  height: 510px;
+}
+
+.container h2 {
+  color: #284ca7;
+  margin-bottom: 20px;
+}
+
+.container p {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.btn-success {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 25px;
+background: linear-gradient(135deg, #6c63ff, #836fff);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+

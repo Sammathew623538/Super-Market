@@ -1,0 +1,198 @@
+{% extends 'base.html'%}
+{% block contents %}
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  
+  
+}
+
+.cart-container {
+  
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  height: 600px;
+}
+
+h2 {
+  text-align: center;
+  color: #6C63FF;
+  margin-bottom: 20px;
+  
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between; /* desktop view item info left, price & remove right */
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background: #f2f2ff;
+  flex-wrap: wrap;
+  
+}
+
+.item-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+
+.item-info img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.details span {
+  font-weight: 500;
+}
+
+.price {
+  color: #444;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.btn-remove {
+  background: #ff4d4d;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.btn-remove:hover {
+  background: #e60000;
+}
+
+.btn-buy {
+  display: block;
+  text-align: center;
+  margin-top: 8px;
+  background: #6C63FF;
+  color: #fff;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  width: 100%;
+}
+
+.btn-buy:hover {
+  background: #574bdb;
+}
+
+.total {
+  margin-top: 15px;
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.empty {
+  
+  text-align: center;
+  padding: 30px;
+  font-size: 16px;
+  color: #666;
+}
+
+/* Mobile responsive */
+@media (max-width: 400px) {
+  li {
+    flex-direction: column; /* mobile view thazhe price & remove */
+    align-items: flex-start;
+  }
+
+  .item-info {
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .item-info img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .price {
+    margin-top: 8px;
+    margin-left: 0;
+  }
+
+  .btn-remove {
+    font-size: 15px;
+    padding: 4px 8px;
+    margin-top: 8px;
+    margin-left: 0;
+  }
+
+  .btn-buy {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+</style>
+
+<div class="cart-container">
+  <h2>Your Cart</h2>
+
+  {% if cart.items.all %}
+    <ul>
+      {% for item in cart.items.all %}
+        <li>
+          <div class="item-info">
+            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+            <div class="details">
+              <span>{{ item.product.name }}</span>
+              <small>Quantity: {{ item.quantity }}</small>
+            </div>
+          </div>
+
+          <span class="price">₹{{ item.subtotal }}</span>
+          <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-remove">Remove</a>
+          <a href="{% url 'ppp' item.product.id %}" class="btn btn-buy">Buy Now</a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <p class="total">Total: ₹{{ cart.total_price }}</p>
+
+  {% else %}
+    <p class="empty">🛒 Your cart is empty.</p>
+  {% endif %}
+</div>
+{% endblock %}

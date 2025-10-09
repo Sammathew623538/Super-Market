@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contents %}
+<link rel="stylesheet" href="{% static 'css/Buy.css' %}">
+<div class="form-container">
+  
+    <h2 class="buy-title">Buy {{ product.name }}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1">
+        </div>
+
+        <div class="form-group">
+            {{ form.address.label_tag }}
+            {{ form.address }}
+        </div>
+
+        <div class="form-group">
+            {{ form.Email.label_tag }}
+            {{ form.Email }}
+        </div>
+
+        <div class="form-group">
+            {{ form.phone_number.label_tag }}
+            {{ form.phone_number }}
+        </div>
+
+        <!-- total price just before button -->
+        <p class="buy-price">Total Price: ₹<span id="total-price">{{ product.price }}</span></p>
+
+        <button type="submit" class="btn-buy">Place Order</button>
+    </form>
+</div>
+
+<script>
+const quantityField = document.getElementById('quantity');
+const priceDisplay = document.getElementById('total-price');
+const unitPrice = parseFloat("{{ product.price|floatformat:2 }}");
+
+quantityField.addEventListener('input', function() {
+  let qty = parseInt(this.value) || 1;
+  priceDisplay.textContent = (unitPrice * qty).toFixed(2);
+});
+</script>
+
+{% endblock %}

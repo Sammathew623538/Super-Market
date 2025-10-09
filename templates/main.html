@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contents %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<!-- Hero Banner -->
+<section class="hero">
+  <div class="hero-text">
+    <h1 id="typing-text"></h1>
+    <p>Get fresh fruits, veggies, dairy and snacks delivered instantly.</p>
+    <button class="btn">Start Shopping</button>
+  </div>
+
+  <div class="hero-img">
+    <img src="{% static 'images/logo.png' %}" alt="grocery">
+  </div>
+</section>
+
+
+
+<!-- Shop by Category -->
+<section class="categories">
+  <h2>Shop by Category</h2>
+  
+
+  <!-- Wrapper for list + buttons -->
+  <div class="category-wrapper" style="position: relative;">
+
+    <!-- Left button -->
+    <button class="scroll-btn left" onclick="scrollCategories(-1)">&#10094;</button>
+
+    <div class="category-list" id="categoryList">
+      {% for category in categories %}
+        <div class="category-card">
+          <a href="{% url 'category_products' category.slug %}" style="text-decoration: none; color: black;">
+            <img src="{{ category.image.url }}" alt="{{ category.name }}">
+            <p>{{ category.name }}</p>
+          </a>
+        </div>
+      {% empty %}
+        <p>No categories available.</p>
+      {% endfor %}
+    </div>
+
+    <!-- Right button -->
+    <button class="scroll-btn right" onclick="scrollCategories(1)">&#10095;</button>
+
+  </div>
+</section>
+
+
+<!-- Featured Products (5 per category) -->
+<section class="products">
+  <h2>Popular Products</h2>
+
+  {% for category, products in category_products.items %}
+    <h3>{{ category.name }}</h3>
+    <div class="product-list">
+      {% for product in products %}
+        <div class="product-card">
+           <a href="{% url 'product_details' product.slug%}" style="text-decoration: none; color: black;">
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          <h4>{{ product.name }}</h4>
+          <p>₹{{ product.price }}</p>
+          </a>
+      <a href="{% url 'add_to_cart' product.id %}"> <button class="btn-cart">Add To Cart</button></a> 
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</section>
+
+<body>
+
+  <script src="{% static 'js/effect.js' %}"></script> 
+    <script src="{% static 'js/dem.js' %}"></script> 
+         
+</body>
+{% endblock %}

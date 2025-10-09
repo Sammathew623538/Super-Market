@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contents %}
+<link rel="stylesheet" href="{% static 'css/cat.css' %}">
+<div class="category-header">
+  <h2>{{ category.name }}</h2>
+  <p>Browse all {{ category.name }} products</p>
+</div>
+
+<div class="product-list">
+  {% for product in products %}
+    <div class="product-card">
+      <img src="{{ product.image.url }}" alt="{{ product.name }}">
+      <h3>{{ product.name }}</h3>
+      <p class="price">₹{{ product.price }}</p>
+      <div class="btn-group">
+        <a href="{% url 'add_to_cart' product.id %}" class="btn">Add to Cart</a>
+        <a href="{% url 'product_details' product.slug%}" class="btn-outline">View</a>
+      </div>
+    </div>
+  {% empty %}
+    <p>No products available in this category.</p>
+  {% endfor %}
+</div>
+{% endblock %}

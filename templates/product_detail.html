@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contents %}
+<link rel="stylesheet" href="{% static 'css/pro.css' %}">
+
+<div class="product-page">
+
+  <!-- Left Section: Product Image -->
+  <div class="product-gallery">
+    <div class="main-img">
+      <img src="{{ product.image.url }}" alt="{{ product.name }}">
+      {% if product.discount > 0 %}
+        <span class="offer-tag">{{ product.discount }}% OFF</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Right Section: Product Details -->
+  <div class="product-info">
+    <h1 class="title">{{ product.name }}</h1>
+
+    <!-- Ratings and Reviews -->
+    <div class="rating-review">
+      <span class="rating">⭐ {{ product.rating }}</span>
+      <span class="reviews">({{ product.reviews }} Reviews)</span>
+    </div>
+
+    <!-- Price Section -->
+    <div class="price-box">
+      <span class="price">₹{{ product.final_price }}</span>
+      <span class="mrp"><s>₹{{ product.mrp }}</s></span>
+      {% if product.discount > 0 %}
+        <span class="offer">{{ product.discount }}% Off</span>
+      {% endif %}
+    </div>
+
+    <!-- Additional Info -->
+    <p class="qty"><b>Net Qty:</b> {{ product.qty }}</p>
+    <p class="delivery">🚚 <b>Delivery in:</b> {{ product.delivery_time }}</p>
+    <p class="desc">{{ product.description }}</p>
+
+    <!-- Purchase Buttons or Out of Stock -->
+    {% if product.stock > 0 %}
+      <div class="btn-group">
+               <a href="{% url 'buy_product' product.id %}"> <button class="btn-buy">Buy Now</button></a>
+         <a href="{% url 'add_to_cart' product.id %}"> <button class="btn-cart">Add To Cart</button></a> 
+      </div>
+    {% else %}
+      <p class="out-stock">⚠ Out of stock</p>
+    {% endif %}
+  </div>
+</div>
+<!-- 🔹 Recommendation Section -->
+<div class="suggest-section">
+  <h2 class="suggest-title">You may also like</h2>
+  <div class="suggest-grid">
+    {% for rec in recommendations %}
+      <div class="suggest-card">
+        <a href="{% url 'product_details' rec.slug %}" style="text-decoration: none; color: black;">
+          <div class="suggest-img">
+            <img src="{{ rec.image.url }}" alt="{{ rec.name }}">
+          </div>
+          <h3>{{ rec.name }}</h3>
+          <p class="suggest-price">₹{{ rec.final_price }}</p>
+          {% if rec.discount > 0 %}
+            <span class="suggest-offer">{{ rec.discount }}% OFF</span>
+          {% endif %}
+        </a>
+      </div>
+    {% empty %}
+      <p>No recommendations available</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

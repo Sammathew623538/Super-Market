@@ -1,0 +1,86 @@
+
+/* Fullscreen background and centering */
+.fullscreen-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Full viewport height */
+    background: linear-gradient(135deg, #f0f4ff, #e6fff5);
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+/* Card styling */
+.product-card {
+    width: 100%;
+    max-width: 800px; /* Max width for large screens */
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* Card header */
+.card-header {
+    font-size: 1.5rem;
+    font-weight: 600;
+     background: linear-gradient(135deg, #6c63ff, #836fff);
+    color: white;
+    padding: 1rem;
+}
+
+/* Form fields */
+.form-label {
+    color: #333;
+}
+
+input, select, textarea {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 0.7rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #1cc88a;
+    box-shadow: 0 0 5px rgba(28, 200, 138, 0.5);
+}
+
+/* Error messages */
+.text-danger {
+    font-size: 0.85rem;
+}
+
+/* Submit button */
+.btn-success {
+    background: linear-gradient(135deg, #1cc88a, #17a673);
+    border: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.75rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #17a673, #138c5e);
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .product-card {
+        width: 100%;
+    }
+    .fullscreen-container {
+        padding: 1rem;
+    }
+}
