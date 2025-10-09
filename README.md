@@ -25,10 +25,16 @@ A simple yet functional **Django-based Super Market web application** with produ
 - View all registered users  
 
 ---
+## ✨ Future Improvements
 
-✨ Future Improvements
+💳 **Online Payment Integration** – Add Razorpay or Stripe for secure checkout during product purchase.  
+💬 **Live Chat Support** – Real-time customer support chat for quick help while shopping.  
+📦 **Order History & Invoice Management** – Allow users to view past orders and download invoices.  
+📱 **Notifications via SMS/WhatsApp** – Send order confirmations and delivery updates directly to users.  
+🛒 **Wishlist & Recently Viewed Items** – Let users save favorite products and revisit them easily.  
+⭐ **Product Reviews & Ratings** – Customers can share feedback and rate products.  
+🎁 **Offers & Coupon System** – Special discounts and promo codes for loyal customers.  
 
-💳 Online payment integration for services 💬 Live chat with doctor 📜 Pet health records management 📱 Notifications via SMS/WhatsApp
 
 
 
